@@ -1,11 +1,14 @@
 with payment as (
 
     select
+        id as payment_id,
         orderid as order_id,
+        paymentmethod as payment_method,
         amount,
-        status
+        status,
+        created as created_at
 
-    from raw.stripe.payment
+    from {{ source ('stripe' , 'payment')}}
 
 )
 
